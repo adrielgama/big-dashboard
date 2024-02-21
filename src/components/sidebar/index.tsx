@@ -50,7 +50,7 @@ export const Sidebar: React.FC = () => {
               <li className={'text-sm font-bold'}>
                 {name}
                 {notificationCount && (
-                  <span className="ml-10 rounded-full bg-big-green-50 px-2 py-1 text-[10px] text-big-gray-800">
+                  <span className="ml-10 animate-pulse rounded-full bg-big-green-50 px-2 py-1 text-[10px] text-big-gray-800">
                     {notificationCount}
                   </span>
                 )}

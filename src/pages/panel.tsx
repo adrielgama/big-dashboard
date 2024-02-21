@@ -12,7 +12,7 @@ interface PanelProps {
 
 export const Panel: React.FC<PanelProps> = ({ title, subtitle }) => {
   return (
-    <div className="h-screen w-full space-y-4 overflow-scroll px-4 lg:container">
+    <div className="h-screen w-full space-y-4 overflow-hidden px-4 lg:container">
       <Header title={title} subtitle={subtitle} />
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
         <Cards />

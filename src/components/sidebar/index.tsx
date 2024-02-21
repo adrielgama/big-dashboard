@@ -38,27 +38,29 @@ export const Sidebar: React.FC = () => {
       <nav>
         <ul className="mr-12 mt-12">
           {menuItems.map(({ name, route, notificationCount }) => (
-            <a
-              href={route}
-              key={name}
-              className={`mb-4 flex h-10 w-full cursor-pointer items-center justify-start rounded-full p-4 transition-all ${
-                location.pathname === route
-                  ? 'bg-big-gray-400 text-white hover:bg-big-gray-100 hover:text-big-gray-800'
-                  : 'text-big-gray-400 hover:bg-big-gray-100 hover:text-big-gray-800'
-              }`}
-            >
-              <li className={'text-sm font-bold'}>
-                {name}
-                {notificationCount && (
-                  <span className="ml-10 animate-pulse rounded-full bg-big-green-50 px-2 py-1 text-[10px] text-big-gray-800">
-                    {notificationCount}
-                  </span>
-                )}
-              </li>
-            </a>
+            <li key={name}>
+              <a
+                href={route}
+                className={`mb-4 flex h-10 w-full cursor-pointer items-center justify-start rounded-full p-4 transition-all ${
+                  location.pathname === route
+                    ? 'bg-big-gray-400 text-white hover:bg-big-gray-100 hover:text-big-gray-800'
+                    : 'text-big-gray-400 hover:bg-big-gray-100 hover:text-big-gray-800'
+                }`}
+              >
+                <span className={'text-sm font-bold'}>
+                  {name}
+                  {notificationCount && (
+                    <span className="ml-10 animate-pulse rounded-full bg-big-green-50 px-2 py-1 text-[10px] text-big-gray-800">
+                      {notificationCount}
+                    </span>
+                  )}
+                </span>
+              </a>
+            </li>
           ))}
         </ul>
       </nav>
+
       <FooterSidebar userImage="" name={user.name} email={user.email} />
     </div>
   )

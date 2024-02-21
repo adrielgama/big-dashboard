@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 
 import {
   faChevronRight,
@@ -7,18 +7,15 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useLocation } from 'react-router-dom'
 
+import { useSidebarContext } from '@/context/SidebarContext'
 import { menuItems } from '@/helpers/menuItems'
 
 import { FooterSidebar } from './footer'
 import { Header } from './header'
 
 export const Sidebar: React.FC = () => {
-  const [isOpen, setIsOpen] = useState(true)
+  const { isOpen, toggleSidebar } = useSidebarContext()
   const location = useLocation()
-
-  const toggleMenu = () => {
-    setIsOpen(!isOpen)
-  }
 
   return (
     <div
@@ -27,12 +24,12 @@ export const Sidebar: React.FC = () => {
       <div className="mb-6 flex items-center justify-between">
         <Header />
         <div
-          className="cursor-pointer text-big-gray-300 lg:hidden"
-          onClick={toggleMenu}
+          className="cursor-pointer text-big-gray-300"
+          onClick={toggleSidebar}
         >
           <FontAwesomeIcon
             icon={isOpen ? faChevronLeft : faChevronRight}
-            className="text-big-gray-100 text-xl hover:text-big-gray-300"
+            className="text-xl text-big-gray-100 hover:text-big-gray-300"
           />
         </div>
       </div>
@@ -40,23 +37,24 @@ export const Sidebar: React.FC = () => {
       <nav>
         <ul className="mr-12 mt-12">
           {menuItems.map(({ name, route, notificationCount }) => (
-            <li
+            <a
+              href={route}
               key={name}
               className={`mb-4 flex h-10 w-full cursor-pointer items-center justify-start rounded-full p-4 transition-all ${
                 location.pathname === route
-                  ? 'hover:bg-big-gray-100 bg-big-gray-400 text-white hover:text-big-gray-800'
-                  : 'hover:bg-big-gray-100 text-big-gray-400 hover:text-big-gray-800'
+                  ? 'bg-big-gray-400 text-white hover:bg-big-gray-100 hover:text-big-gray-800'
+                  : 'text-big-gray-400 hover:bg-big-gray-100 hover:text-big-gray-800'
               }`}
             >
-              <a href={route} className={'text-sm font-bold'}>
+              <li className={'text-sm font-bold'}>
                 {name}
                 {notificationCount && (
-                  <span className="bg-big-green-50 ml-10 rounded-full px-2 py-1 text-[10px] text-big-gray-800">
+                  <span className="ml-10 rounded-full bg-big-green-50 px-2 py-1 text-[10px] text-big-gray-800">
                     {notificationCount}
                   </span>
                 )}
-              </a>
-            </li>
+              </li>
+            </a>
           ))}
         </ul>
       </nav>

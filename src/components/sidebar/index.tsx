@@ -8,7 +8,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useLocation } from 'react-router-dom'
 
 import { useSidebarContext } from '@/context/SidebarContext'
-import { menuItems } from '@/helpers/menuItems'
+import { menuItems } from '@/mocks/menuItems'
+import { user } from '@/mocks/user'
 
 import { FooterSidebar } from './footer'
 import { Header } from './header'
@@ -58,7 +59,7 @@ export const Sidebar: React.FC = () => {
           ))}
         </ul>
       </nav>
-      <FooterSidebar />
+      <FooterSidebar userImage="" name={user.name} email={user.email} />
     </div>
   )
 }
